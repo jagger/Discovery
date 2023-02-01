@@ -23,7 +23,7 @@ https://thycotic.force.com/support/s/article/Configuring-CredSSP-for-use-with-Wi
 +	winrm e winrm/config/listener
   +	NOTE: The certificate used must not be self-signed, it must have server/ client auth and contain appropriate FQDN of the Secret Server machine (Or the Distributed Engine if discovery is being run to a Site).
 +	Create a new WinRM listener with the following information:
-    +	winrm create winrm/config/Listener?Address=*+Transport=HTTPS  '@{Hostname="fqdn.of.SecretServer(Or Distributed Engine)";CertificateThumbprint="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}'
+    +	`winrm create winrm/config/Listener?Address=*+Transport=HTTPS  '@{Hostname="fqdn.of.SecretServer(Or Distributed Engine)";CertificateThumbprint="xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx"}'`
     +	Note: Copying from the CertManager will include one extra character in front of the thumbprint that needs to be deleted. 
 ## Creating the Scanner:
 +	Navigate to Admin > Scripts > Create New
@@ -35,7 +35,7 @@ https://thycotic.force.com/support/s/article/Configuring-CredSSP-for-use-with-Wi
  ![](./images/WorkGroupDiscoveryScanner.png) 
  
 +	The script will use the following arguments:
-    +	$target $[1]$Machine $[1]$Username $[1]$Password
+    +	`$target $[1]$Machine $[1]$Username $[1]$Password`
 
 
 ## Creating a WorkGroup Discovery Source
@@ -49,5 +49,6 @@ https://thycotic.force.com/support/s/article/Configuring-CredSSP-for-use-with-Wi
 ![](./images/DiscoveryScannerPage.png) 
 
 +	Create a new Machine Scanner, using the WorkGroup Machine scanner created earlier. You will be able to use the default Windows Local Account / Dependency scanners with this machine scanner. 
-**Note:** If each of the machines you will be scanning has a different local administrator password, you will need to create a Secret Search Filter in order to dynamically assign the proper credentials to access and pull information from the WorkGroup Machines. https://thycotic.force.com/support/s/article/Discovery-Secret-Search-Filter 
+**Note:** If each of the machines you will be scanning has a different local administrator password, you will need to create a Secret Search Filter in order to dynamically assign the proper credentials to access and pull information from the WorkGroup Machines.
+https://docs.delinea.com/secrets/current/discovery/general-information/discovery-nondomain-joined-or-unix-targets/index.md#creating_a_secret_search_filter
 
